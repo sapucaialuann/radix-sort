@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+struct node{
+    unsigned int value;
+    node *next;
+};
+
+struct queue{
+    node *beginning;
+    node *end;
+};
+
 queue* queue_create(){
     queue *q = malloc(sizeof(queue*));
 
