@@ -70,3 +70,29 @@ void queue_dump(queue *q){
 
     printf("NULL\n");
 }*/
+
+void insere_final(no **header, int valor){
+    no *aux = (no *) malloc(sizeof(no)),
+       *fim = *header;
+    
+    aux->dado = valor;
+    aux->prox = NULL;
+
+    if(fim == NULL){
+        *header = aux;
+    }
+    else{
+        while(fim->prox != NULL)
+            fim = fim->prox;
+        fim->prox = aux;
+    }
+}
+
+void remove_inicio(no **header){
+    no *aux;
+    aux = *header;
+    aux = aux->prox;
+    free(*header);
+    *header = aux;
+}
+
