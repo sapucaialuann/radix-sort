@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct node{
+/* struct node{
     unsigned int value;
     node *next;
 };
@@ -69,4 +69,4 @@ void queue_dump(queue *q){
     }
 
     printf("NULL\n");
-}
+}*/
