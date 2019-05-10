@@ -71,6 +71,13 @@ void queue_dump(queue *q){
     printf("NULL\n");
 }*/
 
+float pow(int base, int exp_value){
+    float result = base;
+    for (int i = 0; i < exp_value - 1; i++)
+        result = result * base;
+    return result;
+}
+
 void insere_final(no **header, int valor){
     no *aux = (no *) malloc(sizeof(no)),
        *fim = *header;
@@ -96,3 +103,14 @@ void remove_inicio(no **header){
     *header = aux;
 }
 
+void print_filas(no *filas[]){
+    for(int i = 0; i < 10; i++){
+        no *aux = filas[i];
+        printf("\nFila %d: ", i);
+        while(aux != NULL){
+            printf("%d,", aux->data);
+            aux = aux->prox;
+            
+        }
+    }
+}
