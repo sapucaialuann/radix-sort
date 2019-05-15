@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* struct node{
-    unsigned int value;
+struct node{
+    int value;
     node *next;
 };
 
@@ -12,8 +12,8 @@ struct queue{
     node *end;
 };
 
-queue* queue_create(){
-    queue *q = malloc(sizeof(queue*));
+queue queue_create(){
+    queue q = malloc(sizeof(queue));
 
     if(q == NULL){
         return NULL;
@@ -23,11 +23,11 @@ queue* queue_create(){
     q->end = NULL;
 }
 
-void enqueue(queue *q, unsigned int value){
+void enqueue(queue q, int value){
     node *n = malloc(sizeof(node*));
 
     if(n == NULL){
-        printf("Value wasnt inserted");
+        printf("Elemento não inserido");
         return;
     }
 
@@ -45,7 +45,7 @@ void enqueue(queue *q, unsigned int value){
     q->end = n;
 }
 
-int dequeue(queue *q){
+int dequeue(queue q){
     if(q->beginning == NULL){
         return -1;
     }
@@ -63,54 +63,18 @@ int dequeue(queue *q){
     return temp;
 }
 
-void queue_dump(queue *q){
+int queue_empty(queue q){
+    return q->beginning == NULL ? 1 : 0;
+}
+
+void queue_dump(queue q){
     for(node *i = q->beginning; i != NULL; i = i->next){
-        printf("%d -> ", i->value);
-    }
+        printf("%d", i->value);
 
-    printf("NULL\n");
-}*/
-
-float pow(int base, int exp_value){
-    float result = base;
-    for (int i = 0; i < exp_value - 1; i++)
-        result = result * base;
-    return result;
-}
-
-void insere_final(no **header, int valor){
-    no *aux = (no *) malloc(sizeof(no)),
-       *fim = *header;
-    
-    aux->dado = valor;
-    aux->prox = NULL;
-
-    if(fim == NULL){
-        *header = aux;
-    }
-    else{
-        while(fim->prox != NULL)
-            fim = fim->prox;
-        fim->prox = aux;
-    }
-}
-
-void remove_inicio(no **header){
-    no *aux;
-    aux = *header;
-    aux = aux->prox;
-    free(*header);
-    *header = aux;
-}
-
-void print_filas(no *filas[]){
-    for(int i = 0; i < 10; i++){
-        no *aux = filas[i];
-        printf("\nFila %d: ", i);
-        while(aux != NULL){
-            printf("%d,", aux->data);
-            aux = aux->prox;
-            
+        if(i->next != NULL){
+            printf(", ");
         }
     }
+
+    printf("\n");
 }
