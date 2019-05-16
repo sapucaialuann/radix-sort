@@ -13,6 +13,6 @@ main.o:
 	$(CC) -c src/main.c
 
 clean:
-	rm *.out || true
-	rm *.o || true
-	rm *.obj || true
+	rm -rf *.out || true
+	rm -rf *.o || true
+	rm -rf *.obj || true
