@@ -5,14 +5,11 @@
 
 void radix_sort(int array[], int size){
     queue q[10];
-    int i, j, cont;
+    int i, j, cont = 1, largest = 0, digit = 1;
 
     for(i = 0; i < 10; i++){
         q[i] = queue_create();
     }
-
-    int largest = 0;
-    int digit = 1;
 
     for(i = 0; i < size; i++){
         if(array[i] > largest){
@@ -20,7 +17,6 @@ void radix_sort(int array[], int size){
         }
     }
 
-    cont = 1;
     while(largest/digit > 0){
         printf("\n\nTabela: ");
 
