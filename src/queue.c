@@ -75,9 +75,9 @@ int queue_empty(queue q){
     return q->beginning == NULL ? 1 : 0;
 }
 
-void queue_dump(queue q){
+void queue_dump(queue q, int digits){
     for(node *i = q->beginning; i != NULL; i = i->next){
-        printf("%d", i->value);
+        printf("%0*d", digits, i->value);
 
         if(i->next != NULL){
             printf(", ");

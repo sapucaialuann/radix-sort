@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void radix_sort(int array[], int size){
+void radix_sort(int array[], int size, int max_digits){
     // 10 filas
     queue q[10];
     /* i e j servirão para iteração. cont será a variável que indicará ao usuario em que passo o algoritmo está trabalhando. 
@@ -27,11 +27,11 @@ void radix_sort(int array[], int size){
 
     // largest/digit > 0 ocorre quando digit se torna maior que largest (maior numero). Ou seja, ocorre quando digit possui mais digitos que largest
     while(largest/digit > 0){
-        printf("\n\nTabela: ");
+        printf("\nTabela:\t");
 
         // itera a lista para dividir os elementos nas filas
         for(i = 0; i < size; i++){
-            printf("%d ", array[i]);
+            printf("%0*d\t", max_digits, array[i]);
             /* Aqui se enfileira o elemento atual da iteração. Deve-se pegar esse elemento e dividir pela "máscara de digito" 
             para que peguemos o digito necessário. O resto por 10 vai indicar em que fila ficará o elemento (fila dos numeros com
             digito 0 em x casa, ..., fila dos numeros com digito 9 em x casa)
@@ -39,12 +39,13 @@ void radix_sort(int array[], int size){
             enqueue(q[(array[i]/digit) % 10], array[i]);
         }
 
-        printf("\n\nIteracao %d: %dª distribuicao\n\n", cont, cont++);
+        printf("\n\nIteracao %d: %dª distribuicao\n\n", cont, cont);
+        cont++;
 
         // Mostra a fila
         for(i = 0; i < 10; i++){
             printf("Fila %d:\t", i);
-            queue_dump(q[i]);
+            queue_dump(q[i], max_digits);
         }
 
         // nessa iteração, i será responsável por ser o index do array, e j por ser o index do array de filas
@@ -70,12 +71,12 @@ void radix_sort(int array[], int size){
         */
         digit *= 10;
 
-        printf("\n\nTabela: ");
+        printf("\nTabela:\t");
 
         for(i = 0; i < size; i++){
-            printf("%d ", array[i]);
+            printf("%0*d\t", max_digits, array[i]);
         }
-    }
 
-    printf("\n");
+        printf("\n");
+    }
 }

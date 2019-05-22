@@ -21,7 +21,7 @@ int main(){
     printf("Digite o numero de posicoes do array\n");
     scanf("%d", &size);
 
-    printf("Digite o numero maximo de digitos do numero\n");
+    printf("Digite o numero maximo de digitos\n");
     scanf("%d", &digits);
 
     int array[size], max = p(10, digits);
@@ -32,7 +32,7 @@ int main(){
         array[i] = rand() % max;
     }
 
-    radix_sort(array, size);
+    radix_sort(array, size, digits);
 
     return 0;
 }
