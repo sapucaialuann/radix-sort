@@ -8,7 +8,9 @@ struct node{
 };
 
 struct queue{
+    // Primeiro elemento da fila
     node *beginning;
+    // Ultimo elemento
     node *end;
 };
 
@@ -33,26 +35,32 @@ void enqueue(queue q, int value){
 
     n->value = value;
     n->next = NULL;
-
+    
+    // Se o final da fila não for nulo (ou seja, já tem um elemento na fila), então o elemento deve ser adicionado depois de end atual
     if(q->end != NULL){
         q->end->next = n;
     }
 
+    // Caso end seja nulo, então não há elemento na fila. Então o inicio deve se tornar n
     else{
         q->beginning = n;
     }
 
+    // atualiza end (que deve apontar pro novo elemento inserido)
     q->end = n;
 }
 
 int dequeue(queue q){
+    // beginning nulo = sem elementos na fila
     if(q->beginning == NULL){
         return -1;
     }
 
     node *old = q->beginning;
+    // inicio aponta pro proximo elemento a ele (independente do proximo ser nulo ou nao)
     q->beginning = q->beginning->next;
 
+    // beginning nulo após mudar pro proximo elemento = fila vazia
     if(q->beginning == NULL){
         q->end = NULL;
     }
